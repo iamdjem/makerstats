@@ -701,6 +701,370 @@
             cursor: pointer;
         }
 
+        /* App Mockup Styles */
+        .device-phone-screen-content,
+        .device-mac-screen-content {
+            display: block;
+            padding: 0;
+            background: #0d0d12;
+        }
+
+        .mockup-ios,
+        .mockup-android,
+        .mockup-macos {
+            width: 100%;
+            height: 100%;
+            padding: 8px;
+            overflow: hidden;
+        }
+
+        .mockup-header-ios,
+        .mockup-header-android {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding: 4px 0;
+        }
+
+        .mockup-avatar {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+        }
+
+        .mockup-username {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mockup-android-menu {
+            margin-left: auto;
+            color: var(--text-muted);
+            font-weight: bold;
+        }
+
+        .mockup-stats-grid-mobile {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .mockup-stat-card {
+            padding: 8px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-stat-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .mockup-stat-label {
+            font-size: 0.5rem;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .mockup-stat-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            font-size: 0.45rem;
+            background: rgba(255,255,255,0.25);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .mockup-points-card-mobile {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .mockup-points-label {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .mockup-points-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .mockup-points-earned {
+            font-size: 0.5rem;
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        /* Android specific */
+        .mockup-stat-card-android {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .mockup-stat-icon-android {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 4px;
+        }
+
+        .mockup-stat-value-android {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .mockup-stat-label-android {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+        }
+
+        .mockup-points-card-android {
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .mockup-points-row-android {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .mockup-points-value-android {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.7rem;
+        }
+
+        .mockup-points-progress-android {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+
+        .mockup-points-progress-android > div {
+            height: 100%;
+            background: linear-gradient(90deg, #8b5cf6, #6366f1);
+            border-radius: 2px;
+        }
+
+        .mockup-points-today-android {
+            font-size: 0.45rem;
+            color: #22c55e;
+            text-align: right;
+        }
+
+        /* macOS Mockup Styles */
+        .mockup-macos {
+            padding: 10px;
+            background: linear-gradient(180deg, #0d0d12 0%, #0a0a0f 100%);
+        }
+
+        .mockup-header-macos {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .mockup-user-pill {
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            border: 1px solid transparent;
+        }
+
+        .mockup-user-pill.active {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.4);
+            color: var(--text-primary);
+        }
+
+        .mockup-refresh-indicator {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+
+        .mockup-section-title {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .mockup-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .mockup-stat-card-mac {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-stat-card-mac::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--card-gradient);
+        }
+
+        .mockup-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .mockup-card-title {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .mockup-card-badge {
+            font-size: 0.4rem;
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            padding: 1px 4px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .mockup-card-value {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 3px;
+        }
+
+        .mockup-card-progress {
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 1px;
+            overflow: hidden;
+            margin-bottom: 2px;
+        }
+
+        .mockup-card-progress > div {
+            height: 100%;
+            background: var(--card-gradient);
+            border-radius: 1px;
+        }
+
+        .mockup-card-comparison {
+            font-size: 0.4rem;
+            color: #22c55e;
+        }
+
+        .mockup-financial-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .mockup-points-card-mac {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mockup-points-icon {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .mockup-points-main {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .mockup-points-sub {
+            font-size: 0.4rem;
+            color: #22c55e;
+        }
+
+        .mockup-earnings-card-mac {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .mockup-earnings-label {
+            font-size: 0.4rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .mockup-earnings-value {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #22c55e;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links, .nav-cta {
@@ -821,34 +1185,185 @@
 
             <!-- Device Mockups -->
             <div class="device-showcase animate-in delay-4">
+                <!-- iOS Phone -->
                 <div class="device device-phone" style="transform: rotate(-5deg);">
                     <div class="device-phone-notch"></div>
-                    <div class="device-phone-screen">
-                        <div>
-                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
-                            iOS Screenshot<br>Coming Soon
+                    <div class="device-phone-screen device-phone-screen-content">
+                        <!-- iOS App Mockup -->
+                        <div class="mockup-ios">
+                            <div class="mockup-header-ios">
+                                <div class="mockup-avatar"></div>
+                                <div class="mockup-username">MakerPro</div>
+                            </div>
+                            <div class="mockup-stats-grid-mobile">
+                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%);">
+                                    <div class="mockup-stat-value">2.4K</div>
+                                    <div class="mockup-stat-label">Followers</div>
+                                    <div class="mockup-stat-badge">+12</div>
+                                </div>
+                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);">
+                                    <div class="mockup-stat-value">18.2K</div>
+                                    <div class="mockup-stat-label">Downloads</div>
+                                    <div class="mockup-stat-badge">+89</div>
+                                </div>
+                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);">
+                                    <div class="mockup-stat-value">847</div>
+                                    <div class="mockup-stat-label">Boosts</div>
+                                    <div class="mockup-stat-badge">+5</div>
+                                </div>
+                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);">
+                                    <div class="mockup-stat-value">1.2K</div>
+                                    <div class="mockup-stat-label">Likes</div>
+                                    <div class="mockup-stat-badge">+23</div>
+                                </div>
+                            </div>
+                            <div class="mockup-points-card-mobile">
+                                <div class="mockup-points-label">Points Balance</div>
+                                <div class="mockup-points-value">12,450</div>
+                                <div class="mockup-points-earned">+245 today</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- macOS Window -->
                 <div class="device device-mac">
                     <div class="device-mac-header">
                         <span class="dot-red"></span>
                         <span class="dot-yellow"></span>
                         <span class="dot-green"></span>
+                        <span style="margin-left: auto; font-size: 0.7rem; color: var(--text-muted);">MakerStats</span>
                     </div>
-                    <div class="device-mac-screen">
-                        <div style="text-align: center;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">💻</div>
-                            macOS Screenshot<br>Coming Soon
+                    <div class="device-mac-screen device-mac-screen-content">
+                        <!-- macOS App Mockup -->
+                        <div class="mockup-macos">
+                            <!-- Header Bar -->
+                            <div class="mockup-header-macos">
+                                <div class="mockup-user-pill active">MakerPro</div>
+                                <div class="mockup-user-pill">Designer3D</div>
+                                <div class="mockup-refresh-indicator"></div>
+                            </div>
+                            <!-- Section Title -->
+                            <div class="mockup-section-title">Account Statistics</div>
+                            <!-- Stats Grid -->
+                            <div class="mockup-stats-grid">
+                                <div class="mockup-stat-card-mac" style="--card-gradient: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%);">
+                                    <div class="mockup-card-header">
+                                        <span class="mockup-card-title">Followers</span>
+                                        <span class="mockup-card-badge">+12</span>
+                                    </div>
+                                    <div class="mockup-card-value">2,438</div>
+                                    <div class="mockup-card-progress"><div style="width: 65%;"></div></div>
+                                    <div class="mockup-card-comparison">+8% vs 7d avg</div>
+                                </div>
+                                <div class="mockup-stat-card-mac" style="--card-gradient: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);">
+                                    <div class="mockup-card-header">
+                                        <span class="mockup-card-title">Boosts</span>
+                                        <span class="mockup-card-badge">+5</span>
+                                    </div>
+                                    <div class="mockup-card-value">847</div>
+                                    <div class="mockup-card-progress"><div style="width: 45%;"></div></div>
+                                    <div class="mockup-card-comparison">+12% vs 7d avg</div>
+                                </div>
+                                <div class="mockup-stat-card-mac" style="--card-gradient: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);">
+                                    <div class="mockup-card-header">
+                                        <span class="mockup-card-title">Likes</span>
+                                        <span class="mockup-card-badge">+23</span>
+                                    </div>
+                                    <div class="mockup-card-value">1,256</div>
+                                    <div class="mockup-card-progress"><div style="width: 78%;"></div></div>
+                                    <div class="mockup-card-comparison">+5% vs 7d avg</div>
+                                </div>
+                                <div class="mockup-stat-card-mac" style="--card-gradient: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%);">
+                                    <div class="mockup-card-header">
+                                        <span class="mockup-card-title">Collections</span>
+                                        <span class="mockup-card-badge">+3</span>
+                                    </div>
+                                    <div class="mockup-card-value">312</div>
+                                    <div class="mockup-card-progress"><div style="width: 32%;"></div></div>
+                                    <div class="mockup-card-comparison">+2% vs 7d avg</div>
+                                </div>
+                                <div class="mockup-stat-card-mac" style="--card-gradient: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);">
+                                    <div class="mockup-card-header">
+                                        <span class="mockup-card-title">Downloads</span>
+                                        <span class="mockup-card-badge">+89</span>
+                                    </div>
+                                    <div class="mockup-card-value">18,234</div>
+                                    <div class="mockup-card-progress"><div style="width: 89%;"></div></div>
+                                    <div class="mockup-card-comparison">+15% vs 7d avg</div>
+                                </div>
+                                <div class="mockup-stat-card-mac" style="--card-gradient: linear-gradient(135deg, #F093FB 0%, #F5576C 100%);">
+                                    <div class="mockup-card-header">
+                                        <span class="mockup-card-title">Prints</span>
+                                        <span class="mockup-card-badge">+34</span>
+                                    </div>
+                                    <div class="mockup-card-value">5,672</div>
+                                    <div class="mockup-card-progress"><div style="width: 56%;"></div></div>
+                                    <div class="mockup-card-comparison">+9% vs 7d avg</div>
+                                </div>
+                            </div>
+                            <!-- Points Section -->
+                            <div class="mockup-section-title" style="margin-top: 8px;">Financial Overview</div>
+                            <div class="mockup-financial-row">
+                                <div class="mockup-points-card-mac">
+                                    <div class="mockup-points-icon">P</div>
+                                    <div class="mockup-points-info">
+                                        <div class="mockup-points-main">12,450 pts</div>
+                                        <div class="mockup-points-sub">+245 today</div>
+                                    </div>
+                                </div>
+                                <div class="mockup-earnings-card-mac">
+                                    <div class="mockup-earnings-label">Est. Monthly</div>
+                                    <div class="mockup-earnings-value">$48.50</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Android Phone -->
                 <div class="device device-phone" style="transform: rotate(5deg);">
-                    <div class="device-phone-notch"></div>
-                    <div class="device-phone-screen">
-                        <div>
-                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
-                            Android Screenshot<br>Coming Soon
+                    <div class="device-phone-notch" style="width: 60px; height: 20px; border-radius: 10px;"></div>
+                    <div class="device-phone-screen device-phone-screen-content">
+                        <!-- Android App Mockup -->
+                        <div class="mockup-android">
+                            <div class="mockup-header-android">
+                                <div class="mockup-avatar"></div>
+                                <div class="mockup-username">MakerPro</div>
+                                <div class="mockup-android-menu">...</div>
+                            </div>
+                            <div class="mockup-stats-grid-mobile">
+                                <div class="mockup-stat-card-android">
+                                    <div class="mockup-stat-icon-android" style="background: #43E97B;">F</div>
+                                    <div class="mockup-stat-value-android">2.4K</div>
+                                    <div class="mockup-stat-label-android">Followers</div>
+                                </div>
+                                <div class="mockup-stat-card-android">
+                                    <div class="mockup-stat-icon-android" style="background: #667EEA;">D</div>
+                                    <div class="mockup-stat-value-android">18.2K</div>
+                                    <div class="mockup-stat-label-android">Downloads</div>
+                                </div>
+                                <div class="mockup-stat-card-android">
+                                    <div class="mockup-stat-icon-android" style="background: #FA709A;">B</div>
+                                    <div class="mockup-stat-value-android">847</div>
+                                    <div class="mockup-stat-label-android">Boosts</div>
+                                </div>
+                                <div class="mockup-stat-card-android">
+                                    <div class="mockup-stat-icon-android" style="background: #F093FB;">P</div>
+                                    <div class="mockup-stat-value-android">5.6K</div>
+                                    <div class="mockup-stat-label-android">Prints</div>
+                                </div>
+                            </div>
+                            <div class="mockup-points-card-android">
+                                <div class="mockup-points-row-android">
+                                    <span>Points</span>
+                                    <span class="mockup-points-value-android">12,450</span>
+                                </div>
+                                <div class="mockup-points-progress-android">
+                                    <div style="width: 62%;"></div>
+                                </div>
+                                <div class="mockup-points-today-android">+245 today</div>
+                            </div>
                         </div>
                     </div>
                 </div>
