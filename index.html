@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MakerStats - Track Your MakerWorld Stats</title>
+    <meta name="description" content="Track your MakerWorld downloads, followers, points, and earnings across macOS, iOS, and Android. Real-time stats, beautiful analytics, and multi-platform sync.">
+    <meta name="keywords" content="MakerWorld, 3D printing, stats tracker, analytics, downloads, followers, points">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="MakerStats - Track Your MakerWorld Stats">
+    <meta property="og:description" content="Beautiful analytics for your MakerWorld profile. Available on macOS, iOS, and Android.">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon (you can replace with your own) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #ec4899;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            --gradient-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(139, 92, 246, 0.3) 50%, rgba(236, 72, 153, 0.3) 100%);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, 2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-1deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Device Mockups */
+        .device-showcase {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 2rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .device {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s;
+        }
+
+        .device:hover {
+            transform: translateY(-10px);
+        }
+
+        .device-mac {
+            width: 500px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .device-mac-header {
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .device-mac-header span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f57; }
+        .dot-yellow { background: #febc2e; }
+        .dot-green { background: #28c840; }
+
+        .device-mac-screen {
+            height: 300px;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .device-phone {
+            width: 180px;
+            height: 380px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 10px;
+        }
+
+        .device-phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .device-phone-notch {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 25px;
+            background: var(--bg-primary);
+            border-radius: 15px;
+        }
+
+        /* Platforms Section */
+        .platforms {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+        }
+
+        .platform-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s;
+        }
+
+        .platform-card:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-glow);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .platform-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .platform-features li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: 600;
+        }
+
+        .platform-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .platform-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .cta h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.4rem 0;
+            transition: color 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: color 0.2s;
+        }
+
+        .social-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .device-showcase {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .device-mac {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .device-phone {
+                width: 150px;
+                height: 320px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">📊</div>
+                MakerStats
+            </a>
+            <ul class="nav-links">
+                <li><a href="#platforms">Platforms</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="https://github.com/iamdjem/MakerStats-Desktop" target="_blank">GitHub</a></li>
+            </ul>
+            <a href="#download" class="nav-cta">Download</a>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge animate-in">
+                <span class="badge-dot"></span>
+                Track your MakerWorld stats in real-time
+            </div>
+            <h1 class="animate-in delay-1">
+                Your MakerWorld Stats,<br>
+                <span class="hero-highlight">Beautifully Visualized</span>
+            </h1>
+            <p class="hero-description animate-in delay-2">
+                Track downloads, followers, points, and earnings across all your devices.
+                Get insights into your 3D printing journey with powerful analytics.
+            </p>
+            <div class="hero-buttons animate-in delay-3">
+                <a href="#download" class="btn btn-primary">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Download Now
+                </a>
+                <a href="https://github.com/iamdjem/MakerStats-Desktop" class="btn btn-secondary" target="_blank">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    View on GitHub
+                </a>
+            </div>
+
+            <!-- Device Mockups -->
+            <div class="device-showcase animate-in delay-4">
+                <div class="device device-phone" style="transform: rotate(-5deg);">
+                    <div class="device-phone-notch"></div>
+                    <div class="device-phone-screen">
+                        <div>
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+                            iOS Screenshot<br>Coming Soon
+                        </div>
+                    </div>
+                </div>
+                <div class="device device-mac">
+                    <div class="device-mac-header">
+                        <span class="dot-red"></span>
+                        <span class="dot-yellow"></span>
+                        <span class="dot-green"></span>
+                    </div>
+                    <div class="device-mac-screen">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">💻</div>
+                            macOS Screenshot<br>Coming Soon
+                        </div>
+                    </div>
+                </div>
+                <div class="device device-phone" style="transform: rotate(5deg);">
+                    <div class="device-phone-notch"></div>
+                    <div class="device-phone-screen">
+                        <div>
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖</div>
+                            Android Screenshot<br>Coming Soon
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section class="platforms" id="platforms">
+        <div class="section-label">Available Everywhere</div>
+        <h2>One App, Three Platforms</h2>
+        <p class="section-description">
+            Whether you're at your desk or on the go, MakerStats keeps your MakerWorld stats at your fingertips.
+        </p>
+
+        <div class="platform-cards">
+            <div class="platform-card">
+                <div class="platform-icon">🍎</div>
+                <h3>macOS</h3>
+                <p>Native SwiftUI app with menu bar integration and beautiful widgets.</p>
+                <ul class="platform-features">
+                    <li>Native Apple Silicon support</li>
+                    <li>Menu bar quick stats</li>
+                    <li>Multiple themes</li>
+                    <li>Background sync</li>
+                </ul>
+                <a href="#download" class="platform-link">
+                    Download for Mac →
+                </a>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📱</div>
+                <h3>iOS</h3>
+                <p>Track your stats on iPhone with home screen widgets and notifications.</p>
+                <ul class="platform-features">
+                    <li>Home screen widgets</li>
+                    <li>Push notifications</li>
+                    <li>Apple Watch support</li>
+                    <li>iCloud sync</li>
+                </ul>
+                <a href="#download" class="platform-link">
+                    Download for iOS →
+                </a>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🤖</div>
+                <h3>Android</h3>
+                <p>Material You design with widgets and rich notifications.</p>
+                <ul class="platform-features">
+                    <li>Material You theming</li>
+                    <li>Home screen widgets</li>
+                    <li>Notification channels</li>
+                    <li>Background sync</li>
+                </ul>
+                <a href="#download" class="platform-link">
+                    Download for Android →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <div class="features-header">
+                <div class="section-label">Powerful Features</div>
+                <h2>Everything You Need</h2>
+                <p class="section-description">
+                    Comprehensive tools to track, analyze, and understand your MakerWorld performance.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Stats</h3>
+                    <p>Track downloads, followers, likes, collections, and points as they update throughout the day.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Analytics & Trends</h3>
+                    <p>Visualize your growth with beautiful charts showing daily, weekly, and monthly trends.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Earnings Tracker</h3>
+                    <p>Monitor your points earnings and estimate monthly revenue from your designs.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Smart Notifications</h3>
+                    <p>Get notified when you hit milestones or when your stats show unusual activity.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Multi-Account</h3>
+                    <p>Track multiple MakerWorld profiles and switch between them instantly.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Beautiful Themes</h3>
+                    <p>Choose from multiple themes including dark mode, Dracula, and more.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Background Sync</h3>
+                    <p>Stats update automatically in the background so you always have fresh data.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Top Models</h3>
+                    <p>See which of your designs are performing best with detailed per-model analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="section-label">Trusted by Makers</div>
+            <h2>Built for the Community</h2>
+            <p class="section-description">
+                MakerStats is designed by makers, for makers. Open source and community-driven.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Platforms</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Metrics Tracked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Profiles</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Free & Open Source</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="download">
+        <div class="cta-container">
+            <h2>Ready to Track Your Stats?</h2>
+            <p>Download MakerStats for free and start visualizing your MakerWorld journey today.</p>
+            <div class="hero-buttons">
+                <a href="https://github.com/iamdjem/MakerStats-Desktop/releases" class="btn btn-primary" target="_blank">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    Download for macOS
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.6 11.48l1.83-3.18c.1-.17.03-.38-.14-.47a.36.36 0 00-.47.14l-1.86 3.22c-1.42-.59-3-.94-4.96-.94s-3.54.35-4.96.94L5.18 7.97a.36.36 0 00-.47-.14c-.17.09-.24.3-.14.47l1.83 3.18C3.38 13.07 1.44 15.96 1 19.5h22c-.44-3.54-2.38-6.43-5.4-8.02zM7 17.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg>
+                    Coming Soon on Android
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    Coming Soon on iOS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <div class="logo-icon">📊</div>
+                        MakerStats
+                    </a>
+                    <p>Track your MakerWorld stats beautifully across all your devices. Free and open source.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#platforms">Platforms</a></li>
+                            <li><a href="#download">Download</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="https://github.com/iamdjem/MakerStats-Desktop" target="_blank">GitHub</a></li>
+                            <li><a href="https://github.com/iamdjem/MakerStats-Desktop/issues" target="_blank">Report Bug</a></li>
+                            <li><a href="https://github.com/iamdjem/MakerStats-Desktop/releases" target="_blank">Changelog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <ul>
+                            <li><a href="https://makerworld.com" target="_blank">MakerWorld</a></li>
+                            <li><a href="#" target="_blank">Discord</a></li>
+                            <li><a href="#" target="_blank">Twitter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 MakerStats. Open source under MIT License.</p>
+                <div class="social-links">
+                    <a href="https://github.com/iamdjem/MakerStats-Desktop" target="_blank" title="GitHub">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.platform-card, .feature-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
