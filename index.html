@@ -12,8 +12,8 @@
     <meta property="og:description" content="Beautiful analytics for your MakerWorld profile. Available on macOS, iOS, and Android.">
     <meta property="og:type" content="website">
 
-    <!-- Favicon (you can replace with your own) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='50%25' stop-color='%238b5cf6'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Crect x='15' y='50' width='18' height='35' rx='4' fill='white'/%3E%3Crect x='41' y='35' width='18' height='50' rx='4' fill='white'/%3E%3Crect x='67' y='20' width='18' height='65' rx='4' fill='white'/%3E%3C/svg%3E">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -421,8 +421,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.75rem;
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .platform-icon svg {
+            opacity: 0.9;
         }
 
         .platform-card h3 {
@@ -512,8 +516,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .feature-icon svg {
+            opacity: 0.9;
         }
 
         .feature-card h3 {
@@ -1144,7 +1152,7 @@
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon">📊</div>
+                <div class="logo-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill="white"/><rect x="10" y="8" width="4" height="13" rx="1" fill="white"/><rect x="17" y="4" width="4" height="17" rx="1" fill="white"/></svg></div>
                 MakerStats
             </a>
             <ul class="nav-links">
@@ -1381,7 +1389,7 @@
 
         <div class="platform-cards">
             <div class="platform-card">
-                <div class="platform-icon">🍎</div>
+                <div class="platform-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg></div>
                 <h3>macOS</h3>
                 <p>Native SwiftUI app with menu bar integration and beautiful widgets.</p>
                 <ul class="platform-features">
@@ -1396,7 +1404,7 @@
             </div>
 
             <div class="platform-card">
-                <div class="platform-icon">📱</div>
+                <div class="platform-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z"/></svg></div>
                 <h3>iOS</h3>
                 <p>Track your stats on iPhone with home screen widgets and notifications.</p>
                 <ul class="platform-features">
@@ -1411,7 +1419,7 @@
             </div>
 
             <div class="platform-card">
-                <div class="platform-icon">🤖</div>
+                <div class="platform-icon"><svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M17.6 11.48l1.83-3.18c.1-.17.03-.38-.14-.47a.36.36 0 00-.47.14l-1.86 3.22c-1.42-.59-3-.94-4.96-.94s-3.54.35-4.96.94L5.18 7.97a.36.36 0 00-.47-.14c-.17.09-.24.3-.14.47l1.83 3.18C3.38 13.07 1.44 15.96 1 19.5h22c-.44-3.54-2.38-6.43-5.4-8.02zM7 17.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></svg></div>
                 <h3>Android</h3>
                 <p>Material You design with widgets and rich notifications.</p>
                 <ul class="platform-features">
@@ -1440,49 +1448,49 @@
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 7h2v11h-2V10zm4 4h2v7h-2v-7z"/></svg></div>
                     <h3>Real-time Stats</h3>
                     <p>Track downloads, followers, likes, collections, and points as they update throughout the day.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">📈</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div>
                     <h3>Analytics & Trends</h3>
                     <p>Visualize your growth with beautiful charts showing daily, weekly, and monthly trends.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">💰</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div>
                     <h3>Earnings Tracker</h3>
                     <p>Monitor your points earnings and estimate monthly revenue from your designs.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🔔</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/></svg></div>
                     <h3>Smart Notifications</h3>
                     <p>Get notified when you hit milestones or when your stats show unusual activity.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">👥</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
                     <h3>Multi-Account</h3>
                     <p>Track multiple MakerWorld profiles and switch between them instantly.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
                     <h3>Beautiful Themes</h3>
                     <p>Choose from multiple themes including dark mode, Dracula, and more.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg></div>
                     <h3>Background Sync</h3>
                     <p>Stats update automatically in the background so you always have fresh data.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
+                    <div class="feature-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg></div>
                     <h3>Top Models</h3>
                     <p>See which of your designs are performing best with detailed per-model analytics.</p>
                 </div>
@@ -1548,7 +1556,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <div class="logo-icon">📊</div>
+                        <div class="logo-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill="white"/><rect x="10" y="8" width="4" height="13" rx="1" fill="white"/><rect x="17" y="4" width="4" height="17" rx="1" fill="white"/></svg></div>
                         MakerStats
                     </a>
                     <p>Track your MakerWorld stats beautifully across all your devices. Free and open source.</p>
