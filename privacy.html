@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - MakerStats</title>
+    <meta name="description" content="Privacy Policy for MakerStats - Track your MakerWorld stats privately and securely.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='50%25' stop-color='%238b5cf6'/%3E%3Cstop offset='100%25' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='20' fill='url(%23g)'/%3E%3Crect x='15' y='50' width='18' height='35' rx='4' fill='white'/%3E%3Crect x='41' y='35' width='18' height='50' rx='4' fill='white'/%3E%3Crect x='67' y='20' width='18' height='65' rx='4' fill='white'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #22222e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6b6b7b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #ec4899;
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                        radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Content */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a0a0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header .updated {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .policy-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .policy-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .policy-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-section ul {
+            color: var(--text-secondary);
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .highlight-box h3 {
+            color: #22c55e;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .highlight-box li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box li::before {
+            content: '✗';
+            color: #22c55e;
+            font-weight: 700;
+        }
+
+        .contact-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .content {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .policy-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="3" y="12" width="4" height="9" rx="1" fill="white"/><rect x="10" y="8" width="4" height="13" rx="1" fill="white"/><rect x="17" y="4" width="4" height="17" rx="1" fill="white"/></svg></div>
+                MakerStats
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#platforms">Platforms</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="https://github.com/iamdjem/MakerStats-Desktop" target="_blank">GitHub</a></li>
+            </ul>
+            <a href="index.html#download" class="nav-cta">Download</a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="content">
+        <header class="page-header">
+            <h1>Privacy Policy</h1>
+            <p class="updated">Last updated: January 1, 2026</p>
+        </header>
+
+        <section class="policy-section">
+            <h2>Overview</h2>
+            <p>MakerStats is a statistics tracking app for MakerWorld. We take your privacy seriously and are committed to protecting your personal information.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Data We Collect</h2>
+            <p><strong>Local Data Only</strong> — All data is stored locally on your device:</p>
+            <ul>
+                <li><strong>Usernames you track:</strong> Stored locally on your device</li>
+                <li><strong>Statistics data:</strong> Downloaded from MakerWorld and stored locally</li>
+                <li><strong>Points data:</strong> If you log in, your points are fetched and stored locally</li>
+                <li><strong>App preferences:</strong> Settings like refresh intervals stored locally</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>What We DON'T Collect</h3>
+                <ul>
+                    <li>No personal information</li>
+                    <li>No analytics or tracking</li>
+                    <li>No data sent to our servers (we don't have any!)</li>
+                    <li>No advertising identifiers</li>
+                    <li>No location data</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="policy-section">
+            <h2>Data Storage</h2>
+            <p>All data is stored <strong>locally on your device</strong> using platform-specific secure storage (SharedPreferences on Android, UserDefaults on iOS/macOS). We do not operate any servers or cloud storage.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Third-Party Services</h2>
+            <p>MakerStats connects to:</p>
+            <ul>
+                <li><strong>MakerWorld (makerworld.com):</strong> To fetch public profile statistics and points data</li>
+            </ul>
+            <p>We do not share any data with third parties.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>MakerWorld Login</h2>
+            <p>If you choose to log in for points tracking:</p>
+            <ul>
+                <li>Your login session is handled directly by MakerWorld</li>
+                <li>Cookies are stored locally on your device</li>
+                <li>We cannot see your MakerWorld password</li>
+            </ul>
+        </section>
+
+        <section class="policy-section">
+            <h2>Children's Privacy</h2>
+            <p>MakerStats is not directed at children under 13. We do not knowingly collect data from children.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Data Deletion</h2>
+            <p>To delete all data:</p>
+            <ul>
+                <li>Open Settings in MakerStats</li>
+                <li>Tap "Clear All Data"</li>
+            </ul>
+            <p>Or simply uninstall the app.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Changes</h2>
+            <p>We may update this policy. Check this page for the latest version.</p>
+        </section>
+
+        <section class="policy-section">
+            <h2>Contact</h2>
+            <p>For questions, open an issue on our <a href="https://github.com/iamdjem/MakerStats-Android" class="contact-link" target="_blank">GitHub repository</a>.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 MakerStats. Open source under MIT License. <a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+</html>
