@@ -293,6 +293,78 @@
             transform: translateY(-10px);
         }
 
+        /* Hero Screens */
+        .hero-screens {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero-screen {
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(99, 102, 241, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            max-height: 500px;
+            width: auto;
+        }
+
+        .hero-screen-center {
+            z-index: 2;
+            transform: scale(1.05);
+        }
+
+        .hero-screen-left {
+            transform: rotate(-5deg) translateX(20px);
+            z-index: 1;
+        }
+
+        .hero-screen-right {
+            transform: rotate(5deg) translateX(-20px);
+            z-index: 1;
+        }
+
+        .hero-screen:hover {
+            transform: scale(1.08) translateY(-10px);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.6), 0 0 60px rgba(139, 92, 246, 0.3);
+            z-index: 10;
+        }
+
+        .hero-screen-left:hover {
+            transform: rotate(0deg) scale(1.08) translateY(-10px);
+        }
+
+        .hero-screen-right:hover {
+            transform: rotate(0deg) scale(1.08) translateY(-10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-screens {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .hero-screen {
+                max-height: 400px;
+                max-width: 280px;
+            }
+
+            .hero-screen-left,
+            .hero-screen-center,
+            .hero-screen-right {
+                transform: none;
+            }
+
+            .hero-screen-left:hover,
+            .hero-screen-center:hover,
+            .hero-screen-right:hover {
+                transform: scale(1.02);
+            }
+        }
+
         .device-mac {
             width: 500px;
             background: var(--bg-card);
@@ -1228,66 +1300,10 @@
 
             <!-- Device Mockups -->
             <div class="device-showcase animate-in delay-4">
-                <!-- iOS Phone -->
-                <div class="device device-phone" style="transform: rotate(-5deg);">
-                    <div class="device-phone-notch"></div>
-                    <div class="device-phone-screen device-phone-screen-content">
-                        <!-- iOS App Mockup -->
-                        <div class="mockup-ios">
-                            <div class="mockup-header-ios">
-                                <div class="mockup-avatar"></div>
-                                <div class="mockup-username">MakerPro</div>
-                            </div>
-                            <div class="mockup-stats-grid-mobile">
-                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #43E97B 0%, #38F9D7 100%);">
-                                    <div class="mockup-stat-value">2.4K</div>
-                                    <div class="mockup-stat-label">Followers</div>
-                                    <div class="mockup-stat-badge">+12</div>
-                                </div>
-                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);">
-                                    <div class="mockup-stat-value">18.2K</div>
-                                    <div class="mockup-stat-label">Downloads</div>
-                                    <div class="mockup-stat-badge">+89</div>
-                                </div>
-                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #FA709A 0%, #FEE140 100%);">
-                                    <div class="mockup-stat-value">847</div>
-                                    <div class="mockup-stat-label">Boosts</div>
-                                    <div class="mockup-stat-badge">+5</div>
-                                </div>
-                                <div class="mockup-stat-card" style="background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);">
-                                    <div class="mockup-stat-value">1.2K</div>
-                                    <div class="mockup-stat-label">Likes</div>
-                                    <div class="mockup-stat-badge">+23</div>
-                                </div>
-                            </div>
-                            <div class="mockup-points-card-mobile">
-                                <div class="mockup-points-label">Points Balance</div>
-                                <div class="mockup-points-value">12,450</div>
-                                <div class="mockup-points-earned">+245 today</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- macOS Window -->
-                <div class="device device-mac">
-                    <div class="device-mac-header">
-                        <span class="dot-red"></span>
-                        <span class="dot-yellow"></span>
-                        <span class="dot-green"></span>
-                        <span style="margin-left: auto; font-size: 0.7rem; color: var(--text-muted);">MakerStats</span>
-                    </div>
-                    <div class="device-mac-screen device-mac-screen-screenshot">
-                        <img src="assets/macos-dashboard.png" alt="MakerStats macOS Dashboard" class="device-screenshot">
-                    </div>
-                </div>
-
-                <!-- Android Phone -->
-                <div class="device device-phone" style="transform: rotate(5deg);">
-                    <div class="device-phone-notch" style="width: 60px; height: 20px; border-radius: 10px;"></div>
-                    <div class="device-phone-screen device-phone-screen-screenshot">
-                        <img src="assets/android-screens.png" alt="MakerStats Android App" class="device-screenshot" style="object-position: left top;">
-                    </div>
+                <div class="hero-screens">
+                    <img src="assets/analytics.jpg" alt="MakerStats Analytics" class="hero-screen hero-screen-left">
+                    <img src="assets/stats.jpg" alt="MakerStats Dashboard" class="hero-screen hero-screen-center">
+                    <img src="assets/models.jpg" alt="MakerStats Models" class="hero-screen hero-screen-right">
                 </div>
             </div>
         </div>
